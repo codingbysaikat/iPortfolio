@@ -1,4 +1,6 @@
 <?php
+require_once get_theme_file_path('/inc/tgm.php');
+require_once get_theme_file_path('/inc/custom-functions.php');
 define("VERSION", time());
 // Theme Basices Bootstriping
 function port_theme_doc(){
@@ -33,3 +35,81 @@ function port_scripts(){
 	wp_enqueue_script("main-js",get_theme_file_uri("/assets/js/main.js"),null,VERSION,true);
 }
 add_action('wp_enqueue_scripts','port_scripts');
+function port_add_remove_contactmethods( $contactmethods ) {
+    // Add Twitter
+    $contactmethods['twitter'] = __('Twitter(X)','port');
+    //Add Facebook
+    $contactmethods['facebook'] = __('Facebook','port');
+    //Instgaram
+    $contactmethods['instagram'] = __('Instagram','port');
+	//LinkedIn
+	$contactmethods['linkedin'] = __('LinkedIn','port');
+    return $contactmethods;
+}
+add_filter('user_contactmethods','port_add_remove_contactmethods',10,1);
+
+//Register custom widget
+function port_custom_widgets(){
+	// Skills Description
+	register_sidebar(array(
+		'name'=>__('Skills Description','port'),
+		'id'=>'skill_ds',
+		'discription'=>__('Add your skill describtion','port'),
+		'before_widget' => '',
+		'after_widget'  => '',
+		'before_title'  => '',
+		'after_title'   => '',
+
+	));
+	// Resume Description
+	register_sidebar(array(
+		'name'=>__('Resume Description','port'),
+		'id'=>'resume_ds',
+		'description'=>__('Add your resume description','port'),
+		'before_widget' => '',
+		'after_widget'  => '',
+		'before_title'  => '',
+		'after_title'   => '',
+	));
+	// Resume Description
+	register_sidebar(array(
+		'name'=>__('Portfolio Description','port'),
+		'id'=>'portfolio_ds',
+		'description'=>__('Add your portfolio description','port'),
+		'before_widget' => '',
+		'after_widget'  => '',
+		'before_title'  => '',
+		'after_title'   => '',
+	));
+	// Services Description
+	register_sidebar(array(
+		'name'=>__('Services Description','port'),
+		'id'=>'services_ds',
+		'description'=>__('Add your services description','port'),
+		'before_widget' => '',
+		'after_widget'  => '',
+		'before_title'  => '',
+		'after_title'   => '',
+	));
+	// Testimonials Description
+	register_sidebar(array(
+		'name'=>__('Testimonials Description','port'),
+		'id'=>'testimonials_ds',
+		'description'=>__('Add your testimonials description','port'),
+		'before_widget' => '',
+		'after_widget'  => '',
+		'before_title'  => '',
+		'after_title'   => '',
+	));
+	// Contact Description
+	register_sidebar(array(
+		'name'=>__('Contact Description', 'port' ),
+		'id'=>'contact_ds',
+		'description'=>__('Add your Contact description','port'),
+		'before_widget' => '',
+		'after_widget'  => '',
+		'before_title'  => '',
+		'after_title'   => '',
+	));
+}
+add_action('widgets_init','port_custom_widgets');

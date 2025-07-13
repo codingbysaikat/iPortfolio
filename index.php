@@ -9,7 +9,8 @@ get_header();
       <img src="<?php echo get_theme_file_uri()."/assets/img/hero-bg.jpg"?>" alt="" data-aos="fade-in" class="">
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <h2>Alex Smith</h2>
+
+        <h2><?php display_first_user_name() ?></h2>
         <p>I'm <span class="typed" data-typed-items="Designer, Developer, Freelancer, Photographer">Designer</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
       </div>
 
@@ -20,8 +21,9 @@ get_header();
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>About</h2>
-        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        <h2><?php echo esc_html__( 'About', 'port' ); ?></h2>
+        
+       <p> <?php echo display_first_user_description();?></p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -76,7 +78,7 @@ get_header();
             <div class="stats-item">
               <i class="bi bi-emoji-smile"></i>
               <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Happy Clients</strong> <span>consequuntur quae</span></p>
+              <p><strong><?php echo esc_html__( 'Happy Clients', 'port' ); ?></strong> <span><?php echo esc_html__( 'consequuntur quae', 'port' ); ?></span></p>
             </div>
           </div><!-- End Stats Item -->
 
@@ -84,7 +86,7 @@ get_header();
             <div class="stats-item">
               <i class="bi bi-journal-richtext"></i>
               <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Projects</strong> <span>adipisci atque cum quia aut</span></p>
+              <p><strong><?php echo esc_html__( 'Projects', 'port' ); ?></strong> <span><?php echo esc_html__( 'adipisci atque cum quia aut', 'port' ); ?></span></p>
             </div>
           </div><!-- End Stats Item -->
 
@@ -92,7 +94,7 @@ get_header();
             <div class="stats-item">
               <i class="bi bi-headset"></i>
               <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Hours Of Support</strong> <span>aut commodi quaerat</span></p>
+              <p><strong><?php echo esc_html__( 'Hours Of Support', 'port' ); ?></strong> <span><?php echo esc_html__( 'aut commodi quaerat', 'port' ); ?></span></p>
             </div>
           </div><!-- End Stats Item -->
 
@@ -100,7 +102,7 @@ get_header();
             <div class="stats-item">
               <i class="bi bi-people"></i>
               <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Hard Workers</strong> <span>rerum asperiores dolor</span></p>
+              <p><strong><?php echo esc_html__( 'Hard Workers', 'port' ); ?></strong> <span><?php echo esc_html__( 'rerum asperiores dolor', 'port' ); ?></span></p>
             </div>
           </div><!-- End Stats Item -->
 
@@ -115,8 +117,8 @@ get_header();
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Skills</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <h2><?php echo esc_html__( 'Skills', 'port' ); ?></h2>
+         <?php echo display_the_widget('skill_ds');?>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -184,8 +186,8 @@ get_header();
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Resume</h2>
-        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        <h2><?php echo esc_html__( 'Resume', 'port' ); ?></h2>
+        <?php echo display_the_widget('resume_ds');?>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -193,7 +195,7 @@ get_header();
         <div class="row">
 
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="resume-title">Sumary</h3>
+            <h3 class="resume-title"><?php echo esc_html__( 'Sumary', 'port' ); ?></h3>
 
             <div class="resume-item pb-0">
               <h4>Brandon Johnson</h4>
@@ -205,7 +207,7 @@ get_header();
               </ul>
             </div><!-- Edn Resume Item -->
 
-            <h3 class="resume-title">Education</h3>
+            <h3 class="resume-title"><?php echo esc_html__( 'Education', 'port' ); ?></h3>
             <div class="resume-item">
               <h4>Master of Fine Arts &amp; Graphic Design</h4>
               <h5>2015 - 2016</h5>
@@ -223,7 +225,7 @@ get_header();
           </div>
 
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-            <h3 class="resume-title">Professional Experience</h3>
+            <h3 class="resume-title"><?php echo esc_html__( 'Professional Experience', 'port' ); ?></h3>
             <div class="resume-item">
               <h4>Senior graphic design specialist</h4>
               <h5>2019 - Present</h5>
@@ -261,8 +263,8 @@ get_header();
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Portfolio</h2>
-        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        <h2><?php echo esc_html__( 'Portfolio', 'port' ); ?></h2>
+        <?php echo display_the_widget('portfolio_ds');?>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -436,8 +438,8 @@ get_header();
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Services</h2>
-        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        <h2><?php echo esc_html__( 'Services', 'port' ); ?></h2>
+        <?php echo display_the_widget('services_ds');?>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -504,8 +506,8 @@ get_header();
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Testimonials</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <h2><?php echo esc_html__( 'Testimonials', 'port' ); ?></h2>
+         <?php echo display_the_widget('testimonials_ds');?>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -616,8 +618,8 @@ get_header();
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Contact</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <h2><?php echo esc_html__( 'Contact', 'port' ); ?></h2>
+         <?php echo display_the_widget('contact_ds');?>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">

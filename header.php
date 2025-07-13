@@ -25,21 +25,20 @@
     <i class="header-toggle d-xl-none bi bi-list"></i>
 
     <div class="profile-img">
-      <img src="<?php echo get_theme_file_uri()."/assets/img/my-profile-img.jpg"?>" alt="" class="img-fluid rounded-circle">
+      <img src="<?php echo display_author_img_url();?>" alt="" class="img-fluid rounded-circle">
     </div>
 
     <a href="index.html" class="logo d-flex align-items-center justify-content-center">
       <!-- Uncomment the line below if you also wish to use an image logo -->
       <!-- <img src="assets/img/logo.png" alt=""> -->
-      <h1 class="sitename">Alex Smith</h1>
+      <h1 class="sitename"><?php display_first_user_name() ?></h1>
     </a>
 
     <div class="social-links text-center">
-      <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-      <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-      <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-      <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
-      <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+      <a href="<?php echo esc_attr(display_social_link('twitter'));?>" class="twitter"><i class="bi bi-twitter-x"></i></a>
+      <a href="<?php echo esc_attr(display_social_link('facebook')); ?>" class="facebook"><i class="bi bi-facebook"></i></a>
+      <a href="<?php echo esc_attr(display_social_link('instagram'));?>" class="instagram"><i class="bi bi-instagram"></i></a>
+      <a href="<?php echo esc_attr(display_social_link('linkedin'));?>" class="linkedin"><i class="bi bi-linkedin"></i></a>
     </div>
 
     <nav id="navmenu" class="navmenu">
