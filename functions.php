@@ -1,6 +1,7 @@
 <?php
 require_once get_theme_file_path('/inc/tgm.php');
 require_once get_theme_file_path('/inc/custom-functions.php');
+require_once get_theme_file_path('/inc/carbon_fields.php');
 define("VERSION", time());
 // Theme Basices Bootstriping
 function port_theme_doc(){
