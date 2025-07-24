@@ -59,10 +59,18 @@ function crb_attach_post_options() {
             Field::make( 'text', 'crb_degree', __( 'Degree Title' ) )->set_help_text( 'Add your degree title on your resume' ),
             Field::make( 'text', 'crb_degree_year', __( 'Passing Year' ) )->set_help_text( 'Add passing year on your resume' ),
             Field::make( 'text', 'crb_degree_instutite', __( 'Institute Name' ) )->set_help_text( 'Add institute name on your resume' ),
-            Field::make( 'text', 'crb_degree_description', __( 'Degree Description' ) )->set_help_text( 'Add Degree Description on your resume' ),
+            Field::make( 'textarea', 'crb_degree_description', __( 'Degree Description' ) )->set_help_text( 'Add Degree Description on your resume' ),
             
-        ))
+        )),
+        Field::make( 'complex', 'crb_resume_professional', __( 'Your Professional Experience' ) )->set_help_text( 'Add your Professional Experience' )
+        ->add_fields(array(
+            Field::make( 'text', 'crb_professional_ex_title', __( 'Professional Title' ) )->set_help_text( 'Add your professional exprience title on your resume' ),
+            Field::make( 'text', 'crb_professional_ex_address', __( 'Work Address' ) )->set_help_text( 'Add your work address on your resume' ),
+            Field::make( 'text', 'crb_professional_ex_year', __( 'Professional Years' ) )->set_help_text( 'Add your professional exprience year on your resume' ),
+            Field::make( 'textarea', 'crb_professional_ex_description', __( 'Professional Description' ) )->set_help_text( 'Add your professional exprience description on your resume' ),
 
+           
+        ))
 
     ));
 
