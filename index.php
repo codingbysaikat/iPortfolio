@@ -208,37 +208,32 @@ get_header();
       </div>
 
     </section><!-- /Resume Section -->
-    <?php endif;?>
-
+    <?php endif; $port_query = new WP_Query(['post_type'=>'portfolio','post_status' => 'publish','posts_per_page' => -1]); if($port_query->have_posts()):?>
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio section light-background">
-
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2><?php echo esc_html__( 'Portfolio', 'port' ); ?></h2>
         <?php echo display_the_widget('portfolio_ds');?>
       </div><!-- End Section Title -->
-
       <div class="container">
-
         <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
-
+          <?php $terms = get_terms(['taxonomy'=>'portfolios_category', 'hide_empty'=>true]); if(!empty($terms) && !is_wp_error($terms)):?>
           <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
             <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">App</li>
-            <li data-filter=".filter-product">Product</li>
-            <li data-filter=".filter-branding">Branding</li>
-            <li data-filter=".filter-books">Books</li>
+            <?php  foreach ($terms as $term):?>
+            <li data-filter=".filter-app"><?php echo esc_html($term->name); ?></li>
+            <?php endforeach;?>
           </ul><!-- End Portfolio Filters -->
-
+          <?php endif;?>
+          <?php while($port_query->have_posts()): $port_query->the_post();?>
           <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
               <div class="portfolio-content h-100">
                 <img src="<?php echo get_theme_file_uri()."/assets/img/portfolio/app-1.jpg";?>" class="img-fluid" alt="">
                 <div class="portfolio-info">
                   <h4>App 1</h4>
-                  <p>Lorem ipsum, dolor sit amet consectetur</p>
+                  <p><?php the_title();?></p>
                   <a href="<?php echo get_theme_file_uri()."/assets/img/portfolio/app-1.jpg";?>" title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                   <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
@@ -384,6 +379,7 @@ get_header();
       </div>
 
     </section><!-- /Portfolio Section -->
+    <?php endif;?>
 
     <!-- Services Section -->
     <section id="services" class="services section">

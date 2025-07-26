@@ -74,4 +74,14 @@ function crb_attach_post_options() {
 
     ));
 
+    // Project information meta boxes
+    Container::make( 'post_meta', __( 'Project information' ) )
+	->where( 'post_type', '=', 'portfolio' )
+	->add_fields( array( 
+        Field::make( 'media_gallery', 'crb_portfolio_gallery', __( 'Portfolio Gallery' ) )->set_type('image' )->set_context( 'side' )->set_duplicates_allowed( false ),
+        Field::make( 'text', 'crb_client', __( 'Client' ) ),
+        Field::make( 'text', 'crb_project_url', __( 'Project URL' ) ),
+        Field::make( 'date', 'crb_project_date', __( 'Project Date' ) ),
+     ) );
+
 }
