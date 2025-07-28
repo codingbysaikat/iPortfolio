@@ -34,6 +34,7 @@ function port_scripts(){
 	wp_enqueue_script("isotope-pkgd-min-js",get_theme_file_uri("/assets/vendor/isotope-layout/isotope.pkgd.min.js"),null,VERSION,true);
 	wp_enqueue_script("swiper-bundle-min-js",get_theme_file_uri("/assets/vendor/swiper/swiper-bundle.min.js"),null,VERSION,true);
 	wp_enqueue_script("main-js",get_theme_file_uri("/assets/js/main.js"),null,VERSION,true);
+	wp_enqueue_style('dashicons');
 }
 add_action('wp_enqueue_scripts','port_scripts');
 function port_add_remove_contactmethods( $contactmethods ) {
@@ -107,6 +108,16 @@ function port_custom_widgets(){
 		'name'=>__('Contact Description', 'port' ),
 		'id'=>'contact_ds',
 		'description'=>__('Add your Contact description','port'),
+		'before_widget' => '',
+		'after_widget'  => '',
+		'before_title'  => '',
+		'after_title'   => '',
+	));
+	// service page details widget
+	register_sidebar(array(
+		'name'=>__('Service page Information'),
+		'id'=>'service_page-deatils',
+		'description'=>__('Add necessary information about the service'),
 		'before_widget' => '',
 		'after_widget'  => '',
 		'before_title'  => '',

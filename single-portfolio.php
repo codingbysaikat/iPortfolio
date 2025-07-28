@@ -40,7 +40,7 @@
               </script>
 
               <div class="swiper-wrapper align-items-center">
-                <?php foreach ($galleries as $gallary): $image_url = wp_get_attachment_url($gallary, 'medium');?>
+                <?php foreach ($galleries as $gallary): $image_url = wp_get_attachment_url($gallary);?>
                 <div class="swiper-slide">
                   <img src="<?php echo $image_url?>" alt="">
                 </div>
@@ -56,7 +56,7 @@
             <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
               <h3><?php echo esc_html__('Project information');?></h3>
               <ul>
-                <li><strong><?php echo esc_html__('Category : ')?></strong> Web design</li>
+                <li><strong><?php echo esc_html__('Category : ')?></strong><?php echo prot_get_term_name();?></li>
                 <?php if(!empty(carbon_get_post_meta( get_the_ID(), 'crb_client' ))):?>
                 <li><strong><?php echo esc_html__('Client : ')?></strong> <?php echo carbon_get_post_meta( get_the_ID(), 'crb_client' );?></li>
                 <?php endif; if(!empty(carbon_get_post_meta( get_the_ID(), 'crb_project_date' ))):?>

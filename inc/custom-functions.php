@@ -122,3 +122,12 @@ function display_second_part_skill_items(){
 		}
 	}
 }
+function prot_get_term_name(){
+	$port_terms = get_the_terms( get_the_ID(), 'portfolios_category' );
+	if ( $port_terms && ! is_wp_error( $port_terms ) ) {
+    // Print only the first term name
+    $port_term_name =  $port_terms[0]->name; 
+	return $port_term_name;
+    }
+	return '';
+}

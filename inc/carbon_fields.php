@@ -72,6 +72,16 @@ function crb_attach_post_options() {
            
         ))
 
+    ))->add_tab(__('Services'), array(
+        Field::make( 'complex', 'crb_services', __( 'Your Services' ) )->set_help_text( 'Add your services' )
+        ->add_fields(array(
+        Field::make( 'text', 'crb_bootstrap_icon', __( 'Service Icon (bootstrap Icon)' ) )->set_help_text( 'Add Bootstrap Icon for service item' ),
+        Field::make( 'text', 'crb_service_title', __( 'Service Title' ) )->set_help_text( 'Add service item title' ),
+        Field::make( 'textarea', 'crb_service_description', __( 'Service Description' ) )->set_help_text( 'Add service item description' ),
+        Field::make( 'text', 'crb_service_page', __( 'Service page URL' ) )->set_help_text( 'Add service page url' ),
+        )),
+        Field::make( 'checkbox', 'crb_show_content', __( 'Show Service Section Content' ) )->set_option_value( 'yes' )
+
     ));
 
     // Project information meta boxes

@@ -222,165 +222,36 @@ get_header();
           <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
             <li data-filter="*" class="filter-active">All</li>
             <?php  foreach ($terms as $term):?>
-            <li data-filter=".filter-app"><?php echo esc_html($term->name); ?></li>
+            <li data-filter="<?php echo '.filter-'.esc_html($term->name);?>"><?php echo esc_html($term->name); ?></li>
             <?php endforeach;?>
           </ul><!-- End Portfolio Filters -->
           <?php endif;?>
-          <?php while($port_query->have_posts()): $port_query->the_post();?>
           <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+          <?php while($port_query->have_posts()): $port_query->the_post();?>
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-<?php echo prot_get_term_name();?>">
               <div class="portfolio-content h-100">
-                <img src="<?php echo get_theme_file_uri()."/assets/img/portfolio/app-1.jpg";?>" class="img-fluid" alt="">
+                <?php $gallaries = carbon_get_post_meta(get_the_ID(), 'crb_portfolio_gallery'); if(!empty($gallaries)):?>
+                <img src="<?php echo wp_get_attachment_url($gallaries[0]);?>" class="img-fluid" alt="">
+                <?php endif;?>
                 <div class="portfolio-info">
-                  <h4>App 1</h4>
+                  <h4><?php echo prot_get_term_name();?></h4>
                   <p><?php the_title();?></p>
-                  <a href="<?php echo get_theme_file_uri()."/assets/img/portfolio/app-1.jpg";?>" title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <?php foreach($gallaries as $gallary):?>
+                  <a href="<?php echo wp_get_attachment_url($gallary);?>" title="<?php the_title();?>" data-gallery="<?php echo 'portfolio-gallery-'.get_the_ID();?>" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <?php endforeach;?>
+                  <a href="<?php the_permalink();?>" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <div class="portfolio-content h-100">
-                <img src="<?php echo get_theme_file_uri()."/assets/img/portfolio/product-1.jpg";?>" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Product 1</h4>
-                  <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="<?php echo get_theme_file_uri()."/assets/img/portfolio/product-1.jpg";?>" title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-              <div class="portfolio-content h-100">
-                <img src="<?php echo get_theme_file_uri()."/assets/img/portfolio/branding-1.jpg";?>" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Branding 1</h4>
-                  <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="<?php echo get_theme_file_uri()."/assets/img/portfolio/branding-1.jpg";?>" title="Branding 1" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
-              <div class="portfolio-content h-100">
-                <img src="<?php echo get_theme_file_uri()."/assets/img/portfolio/books-1.jpg";?>" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Books 1</h4>
-                  <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="<?php echo get_theme_file_uri()."/assets/img/portfolio/books-1.jpg";?>" title="Branding 1" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <div class="portfolio-content h-100">
-                <img src="<?php echo get_theme_file_uri()."/assets/img/portfolio/app-2.jpg";?>" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>App 2</h4>
-                  <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="<?php echo get_theme_file_uri()."/assets/img/portfolio/app-2.jpg";?>" title="App 2" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <div class="portfolio-content h-100">
-                <img src="<?php echo get_theme_file_uri()."/assets/img/portfolio/product-2.jpg";?>" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Product 2</h4>
-                  <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="<?php echo get_theme_file_uri()."/assets/img/portfolio/product-2.jpg";?>" title="Product 2" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-              <div class="portfolio-content h-100">
-                <img src="<?php echo get_theme_file_uri()."/assets/img/portfolio/branding-2.jpg";?>" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Branding 2</h4>
-                  <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="<?php echo get_theme_file_uri()."/assets/img/portfolio/branding-2.jpg";?> title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
-              <div class="portfolio-content h-100">
-                <img src="<?php echo get_theme_file_uri()."/assets/img/portfolio/books-2.jpg";?>" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Books 2</h4>
-                  <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="<?php echo get_theme_file_uri()."/assets/img/portfolio/books-2.jpg";?>" title="Branding 2" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <div class="portfolio-content h-100">
-                <img src="<?php echo get_theme_file_uri()."/assets/img/portfolio/app-3.jpg";?>" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>App 3</h4>
-                  <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="<?php echo get_theme_file_uri()."/assets/img/portfolio/app-3.jpg";?>" title="App 3" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <div class="portfolio-content h-100">
-                <img src="<?php echo get_theme_file_uri()."/assets/img/portfolio/product-3.jpg";?>" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Product 3</h4>
-                  <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="<?php echo get_theme_file_uri()."/assets/img/portfolio/product-3.jpg";?>" title="Product 3" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-              <div class="portfolio-content h-100">
-                <img src="<?php echo get_theme_file_uri()."/assets/img/portfolio/branding-3.jpg";?>" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Branding 3</h4>
-                  <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="assets/img/portfolio/branding-3.jpg" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
-              <div class="portfolio-content h-100">
-                <img src="<?php echo get_theme_file_uri()."/assets/img/portfolio/books-3.jpg";?>" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Books 3</h4>
-                  <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="<?php echo get_theme_file_uri()."/assets/img/portfolio/books-3.jpg";?>" title="Branding 3" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
+            <?php endwhile;?>
           </div><!-- End Portfolio Container -->
-
         </div>
 
       </div>
 
     </section><!-- /Portfolio Section -->
-    <?php endif;?>
-
+    <?php wp_reset_postdata(); endif;?>
+<?php $show_content = carbon_get_theme_option('crb_show_content'); if( $show_content == "yes"):?>
     <!-- Services Section -->
     <section id="services" class="services section">
 
@@ -393,61 +264,25 @@ get_header();
       <div class="container">
 
         <div class="row gy-4">
-
+          <?php $services =  carbon_get_theme_option('crb_services'); if(is_array($services)): foreach($services as $service):?>
           <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
-            <div class="icon flex-shrink-0"><i class="bi bi-briefcase"></i></div>
+            <?php $icon = $service['crb_bootstrap_icon']; if(!empty($icon)):?>
+            <div class="icon flex-shrink-0"><?php echo wp_kses_post($icon);?></div>
+            <?php endif;?>
             <div>
-              <h4 class="title"><a href="service-details.html" class="stretched-link">Lorem Ipsum</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              <?php $service_title = $service['crb_service_title']; if(!empty($service_title)):?>
+              <h4 class="title"><a href="<?php echo !empty($service['crb_service_page']) ? $service['crb_service_page'] : '#'; ?>" class="stretched-link"><?php echo wp_kses_post($service_title);?></a></h4>
+              <?php endif; $service_description = $service['crb_service_description']; if(!empty($service_description)):?>
+              <p class="description"><?php echo wp_kses_post($service_description);?></p>
+              <?php endif;?>
             </div>
           </div>
+          <?php endforeach; endif; ?>
           <!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon flex-shrink-0"><i class="bi bi-card-checklist"></i></div>
-            <div>
-              <h4 class="title"><a href="service-details.html" class="stretched-link">Dolor Sitema</a></h4>
-              <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="300">
-            <div class="icon flex-shrink-0"><i class="bi bi-bar-chart"></i></div>
-            <div>
-              <h4 class="title"><a href="service-details.html" class="stretched-link">Sed ut perspiciatis</a></h4>
-              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="400">
-            <div class="icon flex-shrink-0"><i class="bi bi-binoculars"></i></div>
-            <div>
-              <h4 class="title"><a href="service-details.html" class="stretched-link">Magni Dolores</a></h4>
-              <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="500">
-            <div class="icon flex-shrink-0"><i class="bi bi-brightness-high"></i></div>
-            <div>
-              <h4 class="title"><a href="service-details.html" class="stretched-link">Nemo Enim</a></h4>
-              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="600">
-            <div class="icon flex-shrink-0"><i class="bi bi-calendar4-week"></i></div>
-            <div>
-              <h4 class="title"><a href="service-details.html" class="stretched-link">Eiusmod Tempor</a></h4>
-              <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
-            </div>
-          </div><!-- End Service Item -->
-
         </div>
-
       </div>
-
     </section><!-- /Services Section -->
+    <?php endif;?>
 
     <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials section light-background">
