@@ -82,6 +82,15 @@ function crb_attach_post_options() {
         )),
         Field::make( 'checkbox', 'crb_show_content', __( 'Show Service Section Content' ) )->set_option_value( 'yes' )
 
+    ))->add_tab(__('Testimonials'),array(
+        Field::make( 'complex', 'crb_testimonials', __( 'Your Testimonials' ) )->set_help_text( 'Add your testimonial' )
+        ->add_fields(array(
+        Field::make( 'text', 'crb_client_name', __( 'Client Name' ) )->set_help_text( 'Add the client name' ),
+        Field::make( 'text', 'crb_client_title', __( 'Client Title' ) )->set_help_text( 'Add Client Title title' ),
+        Field::make( 'textarea', 'crb_testimonial_comment', __( 'Client Comment' ) )->set_help_text( 'Add Client Comment' ),
+        )),
+        Field::make( 'checkbox', 'crb_show_testimonial_content', __( 'Show Testimonial Section Content' ) )->set_option_value( 'yes' )
+
     ));
 
     // Project information meta boxes
