@@ -80,7 +80,7 @@ function crb_attach_post_options() {
         Field::make( 'textarea', 'crb_service_description', __( 'Service Description' ) )->set_help_text( 'Add service item description' ),
         Field::make( 'text', 'crb_service_page', __( 'Service page URL' ) )->set_help_text( 'Add service page url' ),
         )),
-        Field::make( 'checkbox', 'crb_show_content', __( 'Show Service Section Content' ) )->set_option_value( 'yes' )
+        Field::make( 'checkbox', 'crb_show_content', __( 'Show Service Section' ) )->set_option_value( 'yes' )
 
     ))->add_tab(__('Testimonials'),array(
         Field::make( 'complex', 'crb_testimonials', __( 'Your Testimonials' ) )->set_help_text( 'Add your testimonial' )
@@ -89,7 +89,14 @@ function crb_attach_post_options() {
         Field::make( 'text', 'crb_client_title', __( 'Client Title' ) )->set_help_text( 'Add Client Title title' ),
         Field::make( 'textarea', 'crb_testimonial_comment', __( 'Client Comment' ) )->set_help_text( 'Add Client Comment' ),
         )),
-        Field::make( 'checkbox', 'crb_show_testimonial_content', __( 'Show Testimonial Section Content' ) )->set_option_value( 'yes' )
+        Field::make( 'checkbox', 'crb_show_testimonial_content', __( 'Show Testimonial Section' ) )->set_option_value( 'yes' )
+
+    ))->add_tab(__('Contacts'),array(
+        Field::make( 'text', 'crb_address', __( 'Address' ) )->set_help_text( 'Add your address' ),
+        Field::make( 'text', 'crb_call', __( 'Call Us' ) )->set_help_text( 'Add your phone number' ),
+        Field::make( 'text', 'crb_contact_email', __( 'Email' ) )->set_help_text( 'Add your Email' ),
+        Field::make( 'textarea', 'crb_embed_map', __( 'Embed a map' ) )->set_help_text( 'Embed your map' ),
+        Field::make( 'checkbox', 'crb_show_contact_content', __( 'Show Contact Section' ) )->set_option_value( 'yes' )
 
     ));
 

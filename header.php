@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Index - iPortfolio Bootstrap Template</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <title><?php echo get_bloginfo('name'); ?></title>
     <!-- Favicons -->
-  <link href="<?php echo get_theme_file_uri("/assets/img/favicon.png")?>" rel="icon">
-  <link href="<?php echo get_theme_file_uri("/assets/img/apple-touch-icon.png")?>" rel="apple-touch-icon">
+  <link href="<?php echo wp_get_attachment_url(get_option( 'site_icon' ));?>" rel="icon">
+  <link href="<?php echo wp_get_attachment_url(get_option( 'site_icon' ));?>" rel="apple-touch-icon">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
@@ -25,7 +22,7 @@
     <i class="header-toggle d-xl-none bi bi-list"></i>
 
     <div class="profile-img">
-      <img src="<?php echo display_author_img_url();?>" alt="" class="img-fluid rounded-circle">
+      <img src="<?php echo wp_get_attachment_image_url(get_theme_mod('custom_logo') , 'full');?>" alt="" class="img-fluid rounded-circle">
     </div>
 
     <a href="index.html" class="logo d-flex align-items-center justify-content-center">

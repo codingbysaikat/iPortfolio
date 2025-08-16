@@ -1,8 +1,10 @@
 <?php
+define("VERSION", time());
 require_once get_theme_file_path('/inc/tgm.php');
 require_once get_theme_file_path('/inc/custom-functions.php');
 require_once get_theme_file_path('/inc/carbon_fields.php');
-define("VERSION", time());
+// Customizer load
+include('lib/customizer.php');
 // Theme Basices Bootstriping
 function port_theme_doc(){
 	load_theme_textdomain('port');
