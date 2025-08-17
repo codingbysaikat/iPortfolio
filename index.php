@@ -1,12 +1,23 @@
 <?php
 get_header();
+// Consultation from submit form
+ if(isset($_GET['submit'])):
+  $first_name = $_POST['first-name'];
+  $last_name = $_POST['last-name'];
+  $email = $_POST['email'];
+  $message =$_POST['message'];
+  $mail_content =file_get_contents(get_theme_file_uri("/template-parts/email.php"));
+  $headers = array('Content-Type: text/html; charset=UTF-8');
+  $subject = "Booked a Consultation";
+  wp_mail("realme.saikat@gmail.com", $subject,$mail_content,$headers);
+endif;
 ?>
 <main class="main">
 
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
 
-      <img src="<?php echo get_theme_file_uri()."/assets/img/hero-bg.jpg"?>" alt="" data-aos="fade-in" class="">
+      <img src="<?php echo $image_id  = get_theme_mod('bg_image'); echo wp_get_attachment_url($image_id);?>" alt="" data-aos="fade-in" class="">
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
@@ -15,7 +26,7 @@ get_header();
       </div>
 
     </section><!-- /Hero Section -->
-
+   <?php $show_content = carbon_get_theme_option('crb_show_about'); if($show_content == 'yes'): ?>
     <!-- About Section -->
     <section id="about" class="about section">
 
@@ -64,7 +75,7 @@ get_header();
       </div>
 
     </section><!-- /About Section -->
- <?php $hide_content = carbon_get_theme_option('crb_hide_content'); if($hide_content != true):?>
+ <?php  endif; $show_content = carbon_get_theme_option('crb_show_support'); if($show_content == "yes"):?>
     <!-- Stats Section -->
     <section id="stats" class="stats section">
 
@@ -111,7 +122,7 @@ get_header();
       </div>
 
     </section><!-- /Stats Section -->
-    <?php endif; $hide_content = carbon_get_theme_option('crb_hide_skills'); if($hide_content != true):?>
+    <?php endif; $show_content = carbon_get_theme_option('crb_show_skills'); if($show_content == "yes"):?>
     <!-- Skills Section -->
     <section id="skills" class="skills section light-background">
 
@@ -135,7 +146,7 @@ get_header();
       </div>
 
     </section><!-- /Skills Section -->
-<?php endif; $hide_resume = carbon_get_theme_option('crb_hide_resume'); if ($hide_resume !== true): $resume_summary = carbon_get_theme_option('crb_resume_sumary'); $summary = $resume_summary[0]; ?>
+<?php endif; $show_resume = carbon_get_theme_option('crb_show_resume'); if ($show_resume == "yes"): $resume_summary = carbon_get_theme_option('crb_resume_sumary'); $summary = $resume_summary[0]; ?>
     <!-- Resume Section -->
     <section id="resume" class="resume section">
 
@@ -420,10 +431,10 @@ get_header();
 
                 <div class="col-md-12 text-center">
                   <div class="loading">Loading</div>
-                  <div class="error-message"></div>
+                  <div class="error-message"> Something is Error!</div>
                   <div class="sent-message">Your message has been sent. Thank you!</div>
 
-                  <button type="submit">Send Message</button>
+                  <button type="submit" id="submit">Send Message</button>
                 </div>
 
               </div>

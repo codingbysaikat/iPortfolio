@@ -14,6 +14,10 @@ function port_theme_doc(){
 	add_theme_support('custom-logo');
 	add_theme_support( 'menus' );
 	add_theme_support('post-thumbnails'); 
+	//Register the Dropdown Menu
+	register_nav_menus(array(
+        'primary-menu' => __('Primary Menu', 'port'),
+    ));
 }
 add_action('after_setup_theme','port_theme_doc');
 function port_scripts(){
@@ -37,6 +41,11 @@ function port_scripts(){
 	wp_enqueue_script("swiper-bundle-min-js",get_theme_file_uri("/assets/vendor/swiper/swiper-bundle.min.js"),null,VERSION,true);
 	wp_enqueue_script("main-js",get_theme_file_uri("/assets/js/main.js"),null,VERSION,true);
 	wp_enqueue_style('dashicons');
+	// ========== Enqueue Custom JavaScript File and Localize The AJAX URL. =================== //
+	wp_enqueue_script('port-ajax-script', get_template_directory_uri() . '/assets/js/port-ajax-script.js', array('jquery'), null, true);
+    wp_localize_script('port-ajax-script', 'port_ajax_object', array(
+        'ajax_url' => admin_url('admin-ajax.php'),
+    ));
 }
 add_action('wp_enqueue_scripts','port_scripts');
 function port_add_remove_contactmethods( $contactmethods ) {
@@ -127,3 +136,49 @@ function port_custom_widgets(){
 	));
 }
 add_action('widgets_init','port_custom_widgets');
+
+
+
+// ========= Contact form handling using AJAX ================ //
+
+function port_conact_form_ajax_request(){
+	$contact_name    = sanitize_text_field($_POST['contact_name']);
+    $contact_email   = sanitize_email($_POST['contact_email']);
+    $contact_subject = sanitize_text_field($_POST['contact_subject']);
+    $contact_message = wp_kses_post($_POST['contact_message']);
+    
+    if ($contact_name && $contact_email && $contact_subject && $contact_message) {
+        $mail_content = "Name: {$contact_name}<br>Email: {$contact_email}<br><br>{$contact_message}";
+        $headers = array(
+            'Content-Type: text/html; charset=UTF-8',
+            'Reply-To: ' . $contact_email
+        );
+    
+        $admin_email = get_option('admin_email');
+        $send_mail = wp_mail($admin_email, $contact_subject, $mail_content, $headers);
+    }
+    if($send_mail){
+        $response = array(
+            'message' => true,
+        );
+
+    }else{
+        $response = array(
+            'message' => false,
+        );
+    }
+    // Send JSON response
+    wp_send_json_success($response);
+
+
+}
+
+// Register AJAX action for logged-in users - contact form
+add_action('wp_ajax_contact_form_ajax_action', 'port_conact_form_ajax_request');
+
+// Register AJAX action for guests (non-logged-in users) - contact form
+add_action('wp_ajax_nopriv_contact_form_ajax_action', 'port_conact_form_ajax_request');
+
+
+
+
