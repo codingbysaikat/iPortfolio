@@ -1,16 +1,5 @@
 <?php
 get_header();
-// Consultation from submit form
- if(isset($_GET['submit'])):
-  $first_name = $_POST['first-name'];
-  $last_name = $_POST['last-name'];
-  $email = $_POST['email'];
-  $message =$_POST['message'];
-  $mail_content =file_get_contents(get_theme_file_uri("/template-parts/email.php"));
-  $headers = array('Content-Type: text/html; charset=UTF-8');
-  $subject = "Booked a Consultation";
-  wp_mail("realme.saikat@gmail.com", $subject,$mail_content,$headers);
-endif;
 ?>
 <main class="main">
 
